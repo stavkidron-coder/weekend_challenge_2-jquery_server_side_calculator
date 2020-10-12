@@ -1,9 +1,9 @@
-let equationData = [
+let equationData =[
     {
         num1: 2,
         num2: 4,
-        operator: '+'
-    }
-];
+        operator: '+',
+        total: 1234
+    }];
 
 module.exports = equationData;

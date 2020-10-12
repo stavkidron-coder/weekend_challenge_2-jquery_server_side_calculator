@@ -13,6 +13,11 @@ app.get('/equationArrayData', (req, res) => {
     res.send(equationArrayData);
 })
 
+app.get('/total', (req, res) => {
+    res.send(equationArrayData);
+})
+
 app.listen(port, () => {
     console.log('Up and running on port:', port);  
 })
+
