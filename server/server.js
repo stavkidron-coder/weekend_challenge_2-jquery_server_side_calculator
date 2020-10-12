@@ -19,6 +19,25 @@ app.get('/total', (req, res) => {
 
 app.post('/submitData', (req, res) => {
     equationArrayData.push(req.body);
+    for (let i = 0; i < equationArrayData.length; i++) {
+        let total;
+        if(equationArrayData[i].operator === "+"){
+            total = Number(equationArrayData[i].num1) + Number(equationArrayData[i].num2);
+            equationArrayData[i].total = total;
+        }
+        else if(equationArrayData[i].operator === "-"){
+            total = Number(equationArrayData[i].num1) - Number(equationArrayData[i].num2);
+            equationArrayData[i].total = total;
+        }
+        else if(equationArrayData[i].operator === "*"){
+            total = Number(equationArrayData[i].num1) * Number(equationArrayData[i].num2);
+            equationArrayData[i].total = total;
+        }
+        else if(equationArrayData[i].operator === "/"){
+            total = Number(equationArrayData[i].num1) / Number(equationArrayData[i].num2);
+            equationArrayData[i].total = total;
+        }
+    }
     res.sendStatus(200);
 })
 

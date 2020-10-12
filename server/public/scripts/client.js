@@ -11,6 +11,7 @@ function onReady(){
     $('#subtractBtn').on('click', opSelector);
     $('#multiplyBtn').on('click', opSelector);
     $('#divideBtn').on('click', opSelector);
+    $('#clear').on('click', clear);
 }
 
 function getEquationData(){
@@ -44,16 +45,16 @@ function appendToDomHistory(array){
         $('#displayHistory').append(`
             <li>${array[i].num1} ${array[i].operator} ${array[i].num2} = ${array[i].total}</li>
         `)
-    }  
+    } 
 }
 
 function appendToDomTotal(array){
+    $('#displayTotal').empty();
     for (let i = 0; i < array.length; i++) {
-        $('#displayTotal').empty();
         $('#displayTotal').append(`
             <h2>${array[i].total}</h2>
         `)
-    }  
+    }
 }
 
 function submitInfo(){
@@ -80,7 +81,6 @@ function submitInfo(){
 let operator = "";
 
 function opSelector(){ // checks which operator was selected and assigns it to an operator variable
-    
 
     if($('#addBtn').is(':checked')){
         operator = "+";
@@ -94,4 +94,9 @@ function opSelector(){ // checks which operator was selected and assigns it to a
     else if($('#divideBtn').is(':checked')){
         operator = "/";
     }
+}
+
+function clear(){
+    $('#firstNumber').val('');
+    $('#secondNumber').val('');
 }
