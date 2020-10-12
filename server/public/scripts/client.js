@@ -49,33 +49,38 @@ function appendToDomHistory(array){
 }
 
 function appendToDomTotal(array){
-    $('#displayTotal').empty();
-    for (let i = 0; i < array.length; i++) {
+    
+    for (let i = 0; i < el.length; i++) {
         $('#displayTotal').append(`
-            <h2>${array[i].total}</h2>
+            <h2>${el[i].total}</h2>
         `)
     }
 }
 
 function submitInfo(){
-    $.ajax({
-        method: 'POST',
-        url: '/submitData',
-        data: {
-            num1: $('#firstNumber').val(),
-            num2: $('#secondNumber').val(),
-            operator: operator
-        }
-    }).then(function(response){
-        // clear inputs
-        $('#firstNumber').val('');
-        $('#secondNumber').val('');
-        console.log(response);
-        // perform get request to get the updated array
-        getEquationData();
-    }).catch(function(error){
-        alert(error);
-    });
+    if($('#firstNumber').val() === '' || $('#secondNumber').val() === '' || operator === ''){
+        alert('Fill in all fields!');
+    }
+    else{
+        $.ajax({
+            method: 'POST',
+            url: '/submitData',
+            data: {
+                num1: $('#firstNumber').val(),
+                num2: $('#secondNumber').val(),
+                operator: operator
+            }
+        }).then(function(response){
+            // clear inputs
+            $('#firstNumber').val('');
+            $('#secondNumber').val('');
+            console.log(response);
+            // perform get request to get the updated array
+            getEquationData();
+        }).catch(function(error){
+            alert(error);
+        });
+    } // end else
 }
 
 let operator = "";
@@ -97,6 +102,7 @@ function opSelector(){ // checks which operator was selected and assigns it to a
 }
 
 function clear(){
+    operator = '';
     $('#firstNumber').val('');
     $('#secondNumber').val('');
 }
