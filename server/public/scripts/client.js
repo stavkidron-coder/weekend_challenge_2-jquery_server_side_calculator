@@ -20,7 +20,7 @@ function getEquationData(){
         url: '/equationArrayData'
     }).then(function(response) {
         appendToDomHistory(response);
-        console.log(response);    
+        console.log(response);   
     }).catch(function(error){
         alert(error);
     });
@@ -39,6 +39,7 @@ function getTotal(){
 }
 
 function appendToDomHistory(array){
+    $('#displayHistory').empty();
     for (let i = 0; i < array.length; i++) {
         $('#displayHistory').append(`
             <li>${array[i].num1} ${array[i].operator} ${array[i].num2} = ${array[i].total}</li>
@@ -65,7 +66,12 @@ function submitInfo(){
             operator: operator
         }
     }).then(function(response){
+        // clear inputs
+        $('#firstNumber').val('');
+        $('#secondNumber').val('');
         console.log(response);
+        // perform get request to get the updated array
+        getEquationData();
     }).catch(function(error){
         alert(error);
     });

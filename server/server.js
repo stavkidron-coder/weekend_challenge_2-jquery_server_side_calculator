@@ -18,10 +18,16 @@ app.get('/total', (req, res) => {
 })
 
 app.post('/submitData', (req, res) => {
-    console.log(req.body);
+    equationArrayData.push(req.body);
+    res.sendStatus(200);
 })
 
 app.listen(port, () => {
     console.log('Up and running on port:', port);  
 })
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// LOGIC // LOGIC // LOGIC // LOGIC // LOGIC // LOGIC // LOGIC // LOGIC // LOGIC // LOGIC // LOGIC // LOGIC //
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
