@@ -6,6 +6,11 @@ function onReady(){
     console.log('Hello from jq');
     getEquationData();
     getTotal();
+    $('#submit').on('click', submitInfo);
+    $('#addBtn').on('click', opSelector);
+    $('#subtractBtn').on('click', opSelector);
+    $('#multiplyBtn').on('click', opSelector);
+    $('#divideBtn').on('click', opSelector);
 }
 
 function getEquationData(){
@@ -28,20 +33,17 @@ function getTotal(){
         url: '/total'
     }).then(function(response){
         appendToDomTotal(response);
-        console.log(response[0].total); // index of 0 will change!!
     }).catch(function(error){
         alert(error);
     });
 }
 
 function appendToDomHistory(array){
-    console.log(array);
     for (let i = 0; i < array.length; i++) {
         $('#displayHistory').append(`
             <li>${array[i].num1} ${array[i].operator} ${array[i].num2} = ${array[i].total}</li>
         `)
-    }
-    
+    }  
 }
 
 function appendToDomTotal(array){
@@ -50,6 +52,40 @@ function appendToDomTotal(array){
         $('#displayTotal').append(`
             <h2>${array[i].total}</h2>
         `)
-    }
+    }  
+}
+
+function submitInfo(){
+    $.ajax({
+        method: 'POST',
+        url: '/submitData',
+        data: {
+            num1: $('#firstNumber').val(),
+            num2: $('#secondNumber').val(),
+            operator: operator
+        }
+    }).then(function(response){
+        console.log(response);
+    }).catch(function(error){
+        alert(error);
+    });
+}
+
+let operator = "";
+
+function opSelector(){ // checks which operator was selected and assigns it to an operator variable
     
+
+    if($('#addBtn').is(':checked')){
+        operator = "+";
+    }
+    else if($('#subtractBtn').is(':checked')){
+        operator = "-";
+    }
+    else if($('#multiplyBtn').is(':checked')){
+        operator = "*";
+    }
+    else if($('#divideBtn').is(':checked')){
+        operator = "/";
+    }
 }

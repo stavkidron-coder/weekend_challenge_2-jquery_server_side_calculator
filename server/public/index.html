@@ -17,12 +17,30 @@
     <div id="form">
         <input type="number" id="firstNumber" placeholder="Enter a number">
 
-        <button id="addBtn">+</button>
-        <button id="subtractBtn">-</button>
-        <button id="multiplyBtn">*</button>
-        <button id="divideBtn">/</button>
+        <!-- buttons to select mathematical operators -->
+        <ul class="operatorBtns">
+            <li>
+                <label for="addBtn" class="labels" id="addLbl">+</label>
+                <input type="radio" name="operatorBtn" id="addBtn"></input>
+            </li>
+            <li>
+                <label for="subtractBtn" class="labels">-</label>
+                <input type="radio" name="operatorBtn" id="subtractBtn"></input>
+            </li>
+            <li>
+                <label for="multiplyBtn" class="labels">*</label>
+                <input type="radio" name="operatorBtn" id="multiplyBtn"></input>
+            </li>
+            <li>
+                <label for="divideBtn" class="labels">/</label>
+                <input type="radio" name="operatorBtn" id="divideBtn"></input>
+            </li>
+        </ul>
 
         <input type="number" id="secondNumber" placeholder="Enter a number">
+
+        <button id="submit">=</button>
+        <button id="clear">C</button>
     </div>
 
     <div id="displayTotal"></div>

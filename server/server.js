@@ -17,6 +17,10 @@ app.get('/total', (req, res) => {
     res.send(equationArrayData);
 })
 
+app.post('/submitData', (req, res) => {
+    console.log(req.body);
+})
+
 app.listen(port, () => {
     console.log('Up and running on port:', port);  
 })
